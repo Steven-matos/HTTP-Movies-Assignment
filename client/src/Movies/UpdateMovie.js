@@ -39,6 +39,9 @@ const UpdateMovie = props => {
   const handleChange = e => {
     e.persist();
     let value = e.target.value;
+    if(e.target.name === 'stars'){
+      value = value.split(',')
+    }
     if (e.target.name === "metascore") {
       value = parseInt(value, 10);
     }
@@ -49,15 +52,14 @@ const UpdateMovie = props => {
     });
   };
 
-  console.log(movie)
-
   const handleSubmit = e => {
     e.preventDefault();
     axios
       .put(`http://localhost:5000/api/movies/${id}`, movie)
       .then(res => {
-        console.log(res);
-        props.history.push("/");
+        console.log('response from put',res);
+        props.setMovieList(res.data)
+        props.history.push('/');
       })
       .catch(err => {
         console.log(err);
