@@ -42,7 +42,7 @@ const UpdateMovie = props => {
     if(e.target.name === 'stars'){
       value = value.split(',')
     }
-    if (e.target.name === "metascore") {
+    else if (e.target.name === "metascore") {
       value = parseInt(value, 10);
     }
 
