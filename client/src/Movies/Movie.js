@@ -32,7 +32,7 @@ function Movie(props, { addToSavedList }) {
       .delete(`http://localhost:5000/api/movies/${match.params.id}`)
       .then(res => {
         console.log('delete res:',res);
-        props.setMovieList(res.data);
+        props.getMovieList();
         props.history.push("/");
       })
       .catch(err => {
